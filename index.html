@@ -1,186 +1,32 @@
 <!DOCTYPE html>
 <html ng-app="MeterioApp">
 
-  <head>
-    <link rel="stylesheet" href="style.css" />
+<head>
+    <link rel="stylesheet" href="style.css"/>
     <meta name="viewport" content="width=device-width">
 
-    <script src="_external-libs/http_rawgit.com_angular_bower-angular_master_angular.js"></script>
-    <script src="_external-libs/http_rawgit.com_angular_bower-angular-route_master_angular-route.js"></script>
-    
-  </head>
+</head>
 
-  <body ng-controller="mainCtrl">
-    
+<body ng-controller="mainCtrl">
+
     <navigation></navigation>
     <ng-view></ng-view>
-    
-    <script>'use strict';
 
-    //jshint esnext:true
+    <!-- Libs -->
+    <script type="text/javascript" src="_external-libs/http_rawgit.com_angular_bower-angular_master_angular.js"></script>
+    <script type="text/javascript" src="_external-libs/http_rawgit.com_angular_bower-angular-route_master_angular-route.js"></script>
 
-    angular.module('MeterioApp', ['ngRoute']).controller('mainCtrl', function ($scope, $location, $routeParams, metersService) {
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
+    <!-- App -->
+    <script type="text/javascript" src="script.js"></script>
 
-        $scope.getMeter = metersService.getSpecificMeterData;
-    }).service('metersService', function () {
-        var metersList = JSON.parse('[{"index":0,"date":"2017-04-25T10:04:09","amount":734485,"type":"electricity"},{"index":1,"date":"2012-05-18T02:24:23","amount":701332,"type":"electricity"},{"index":2,"date":"2013-08-26T08:27:20","amount":992605,"type":"electricity"},{"index":3,"date":"2010-03-16T08:00:15","amount":446022,"type":"electricity"},{"index":4,"date":"2013-04-30T03:57:59","amount":947442,"type":"cold water"},{"index":5,"date":"2010-06-14T02:54:17","amount":38928,"type":"cold water"},{"index":6,"date":"2015-11-04T08:54:30","amount":779255,"type":"hot water"},{"index":7,"date":"2010-01-31T04:07:16","amount":111757,"type":"hot water"},{"index":8,"date":"2014-11-02T10:27:33","amount":841644,"type":"cold water"},{"index":9,"date":"2013-07-27T10:10:15","amount":391725,"type":"electricity"},{"index":10,"date":"2010-09-02T01:41:14","amount":278979,"type":"cold water"},{"index":11,"date":"2010-06-16T02:55:43","amount":581396,"type":"hot water"},{"index":12,"date":"2015-09-19T12:24:10","amount":36174,"type":"cold water"},{"index":13,"date":"2013-04-29T06:21:51","amount":35322,"type":"hot water"},{"index":14,"date":"2011-03-27T07:54:12","amount":438238,"type":"hot water"}]', function jsonParser(key, value) {
-            var dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
-            if (typeof value === "string" && dateFormat.test(value)) {
-                return new Date(value);
-            }
-            return value;
-        });
+    <script type="text/javascript" src="components/login.js"></script>
+    <script type="text/javascript" src="components/meter.js"></script>
+    <script type="text/javascript" src="components/metersList.js"></script>
 
-        this.getMetersList = function () {
-            return metersList;
-        };
-        this.getMeter = function (index) {
-            return metersList[index];
-        };
-        this.getLogoUrl = function (type) {
-            var typeToLogoMap = {
-                'hot water': 'https://pp.userapi.com/c836420/v836420334/32ab2/rRIFbAF3PIY.jpg',
-                'cold water': 'https://pp.userapi.com/c836420/v836420334/32aa4/p8cc_wnKLes.jpg',
-                'electricity': 'https://pp.userapi.com/c836420/v836420334/32aab/2vcT97Hcnj0.jpg'
-            };
-            return typeToLogoMap[type];
-        };
-    }).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/mipukep/main', {
-            template: '<h1>main<h1>'
-        }).when('/login', {
-            template: '<login-form></login-form>'
-        }).when('/meters', {
-            template: '<meters-list></meters-list>'
-        }).when('/meters/:meterId', {
-            template: '<meter-element class="extended-info"></meter-element>'
-        })
-        /*.when('/', {
-         template: `<h1>empty template<h1>`
-         })*/
-        ;
-
-        //$locationProvider.html5Mode(true); // configure html5 to get links working on jsbin
-    }]).controller('navController', function ($scope) {
-        $scope.isMenuShown = false;
-        $scope.toggleMenuVisibility = function () {
-            $scope.isMenuShown = !$scope.isMenuShown;
-        };
-    }).component('navigation', {
-        templateUrl: 'views/navigation.html',
-        controller: 'navController'
-    })
-
-// .controller('metersListCtrl', function($scope, metersService) {
-
-// })
-// .component('metersList', {
-//   templateUrl: 'views/meters-list.html',
-//   controller: 'metersListCtrl'
-// })
-    ;</script>
-    <script>angular
-        .module('MeterioApp')
-
-        .component('loginForm', {
-            templateUrl: 'views/login.html',
-            controller: loginController
-        });
-
-
-    function loginController() {
-        this.data = 'login';
-    }
+    <script type="text/javascript">
+        app.initialize();
     </script>
-    <script>'use strict';
 
-    angular.module('MeterioApp').component('meterElement', {
-        templateUrl: 'views/meter-element.html',
-        controller: meterController,
-        bindings: {
-            meter: '<?'
-        }
-    });
-
-    function meterController($scope, $routeParams, metersService) {
-        var _this = this;
-
-        $scope.getLogoUrl = metersService.getLogoUrl;
-        this.editable = false;
-
-        this.edit = function () {
-            _this.editable = true;
-        };
-
-        this.save = function () {
-            _this.editable = false;
-        };
-
-        if ($routeParams.meterId) {
-            this.meter = metersService.getMeter($routeParams.meterId);
-            this.viewType = 'extended'; // standalone
-        } else {
-            this.viewType = 'short'; // in the list
-        }
-    }</script>
-    <script>'use strict';
-
-    angular.module('MeterioApp').component('metersList', {
-        templateUrl: 'views/meters-list.html',
-        controller: metersListController
-    });
-
-    function metersListController($scope, metersService) {
-        $scope.dataFromServer = metersService.getMetersList();
-
-        Object.assign(this, {
-            toggleType: toggleType,
-            filterMetersFn: filterMetersFn,
-            isActiveType: isActiveType
-        });
-
-        var vm = this;
-
-        this.options = {};
-
-        this.options.limitMetersCount = 5;
-        this.options.metersParamsTitles = ['date', 'amount', 'type'];
-
-        this.options.sortParam = 'date';
-        this.options.sortIsReversed = true;
-
-        this.options.filterParams = {};
-
-        function filterMetersFn(meter) {
-            // date
-            var date = meter.date;
-            var dateFrom = vm.options.filterParams.dateFrom || -Infinity;
-            var dateTo = vm.options.filterParams.dateTo || Infinity;
-
-            // type
-            var isTypeCorrect = isActiveType(meter.type);
-
-            return isTypeCorrect && date > dateFrom && date < dateTo;
-        }
-
-        // types
-        this.options.metersTypes = ['hot water', 'cold water', 'electricity'];
-        var selectedTypes = new Set(this.options.metersTypes);
-
-        function toggleType(type) {
-            if (selectedTypes.has(type)) {
-                selectedTypes.delete(type);
-            } else {
-                selectedTypes.add(type);
-            }
-        }
-
-        function isActiveType(type) {
-            return selectedTypes.has(type);
-        }
-    }</script>
-  </body>
+</body>
 
 </html>

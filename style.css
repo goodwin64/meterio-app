@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:700);
+@import url("assets/fonts/open-sans");
 
 * {
     margin: 0;
@@ -33,9 +33,7 @@
 }
 
 .navigation__logo {
-    background-image: url("https://pp.userapi.com/c840230/v840230334/2777/Fa7xli4ShJQ.jpg");
-    background-position: 50%;
-    background-repeat: no-repeat;
+    background: url("assets/images/meterio-logo.png") no-repeat 50%;
     -webkit-background-size: contain;
     background-size: contain;
     width: 70%;
@@ -91,7 +89,7 @@
 
     .burger-icon.burger-opened span:nth-child(1) {
         top: 18px;
-        width: 0%;
+        width: 0;
         left: 50%;
     }
 
@@ -157,15 +155,15 @@ meter-element {
 }
 
     .meter-data__image.hot-water {
-        background-image: url("https://pp.userapi.com/c836420/v836420334/32ab2/rRIFbAF3PIY.jpg");
+        background-image: url("assets/images/meter-type-hot-water.jpg");
     }
 
     .meter-data__image.cold-water {
-        background-image: url("https://pp.userapi.com/c836420/v836420334/32aa4/p8cc_wnKLes.jpg");
+        background-image: url("assets/images/meter-type-cold-water.jpg");
     }
 
     .meter-data__image.electricity {
-        background-image: url("https://pp.userapi.com/c836420/v836420334/32aab/2vcT97Hcnj0.jpg");
+        background-image: url("assets/images/meter-type-electricity.jpg");
     }
 
 .meter-data__text-prepended {
