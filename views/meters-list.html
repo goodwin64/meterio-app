@@ -1,0 +1,63 @@
+<main>
+  
+  <div class="meters-list__options"> <!-- Put in separated component (options) -->
+    
+    <div class="options__section meters-list__filter">
+      Filter
+      
+      <span>By date</span>
+      <div>
+        <br><label>From
+          <input type="date" ng-model=" $ctrl.options.filterParams.dateFrom ">
+        </label>
+        
+        <br><label>To
+          <input type="date" ng-model=" $ctrl.options.filterParams.dateTo ">
+        </label>
+      </div>
+      
+      <span>by amount</span>
+      <br><label>
+        <input type="checkbox" ng-model=" $ctrl.options.filterParams.amount ">
+      </label>
+      
+      <span>by type</span>
+      <br><button type="text" 
+              ng-repeat="param in $ctrl.options.metersTypes"
+              ng-click="$ctrl.toggleType(param)"
+              ng-class="{'type__active': $ctrl.isActiveType(param)}">
+        {{ param }}
+      </button>
+    </div>
+    
+    <div class="options__section meters-list__sort">
+      <span>Sort by:</span>
+      <br><select name="meters-sort"
+              ng-model="$ctrl.options.sortParam"
+              ng-options="sp for sp in $ctrl.options.metersParamsTitles">
+      </select>
+      
+      <br>reversed: 
+      <input type="checkbox" ng-model="$ctrl.options.sortIsReversed">
+    </div>
+    
+    <div class="options__section meters-list__params"></div>
+    
+    <div class="options__section meters-list__count">
+      Count on page:
+      <input type="number"
+             ng-model=" $ctrl.options.limitMetersCount ">
+    </div>
+    
+  </div>
+  
+  <meter-element ng-repeat="meter in dataFromServer 
+                            | orderBy: $ctrl.options.sortParam:$ctrl.options.sortIsReversed
+                            | filter:  $ctrl.filterMetersFn
+                            | limitTo: $ctrl.options.limitMetersCount"
+                 meter="meter"
+                 class="short-info">
+    
+  </meter-element>
+  
+</main>
