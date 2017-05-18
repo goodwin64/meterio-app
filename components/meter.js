@@ -16,11 +16,11 @@ function meterController($scope, $routeParams, metersService) {
   
   this.edit = () => {
     this.editable = true;
-  }
+  };
   
   this.save = () => {
     this.editable = false;
-  }
+  };
 
   if ($routeParams.meterId) {
     this.meter = metersService.getMeter($routeParams.meterId);
