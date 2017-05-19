@@ -20,9 +20,9 @@
     </label>
   </p>
   
-  <img ng-src="{{getLogoUrl($ctrl.meter.type)}}" 
-       class="meter-data__image" 
-       alt="Image is broken :/ ({{$ctrl.meter.type}})">
+  <div ng-class="$ctrl.meter.csstype"
+       class="meter-data__image">
+  </div>
   
   <div class="meter-data__aside-left meter-data__control-buttons">
     

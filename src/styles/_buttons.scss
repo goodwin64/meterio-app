@@ -1,0 +1,21 @@
+@import "variables";
+
+.button {
+	padding: 15px;
+	border: 0;
+
+	&__red {
+		background-color: $color-red;
+		color: $light-color;
+	}
+
+	&__blue {
+		background-color: $color-blue;
+		color: $light-color;
+	}
+
+	&__yellow {
+		background-color: $color-yellow;
+		color: $dark-color;
+	}
+}

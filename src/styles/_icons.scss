@@ -1,0 +1,52 @@
+@import "variables";
+
+.icon {
+	position: relative;
+	margin: 10px auto;
+	width: 32px;
+	height: 32px;
+
+	.name {
+		width: 32px;
+		position: absolute;
+		text-align: center;
+		top: 18px;
+		left: -8px;
+	}
+
+	&-plus {
+		background-color: $color-green;
+		top: 0;
+		left: 0;
+
+		&:after {
+			background-color: #fff;
+			width: 16px;
+			height: 2px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			content: "";
+		}
+
+		&:before {
+			background-color: #fff;
+			width: 2px;
+			height: 16px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			-moz-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			-o-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			content: "";
+		}
+	}
+}
