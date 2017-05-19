@@ -1,0 +1,46 @@
+<div class="meter-data">
+  
+  <p class="meter-data__date">
+    <label>
+      <span class="meter-data__text-prepended">Created:</span>
+      <input type="date"
+             ng-model="$ctrl.meter.date" 
+             ng-disabled=" !$ctrl.editable "
+             class="meter-data__input"/>
+    </label>
+  </p>
+  
+  <p class="meter-data__amount">
+    <label>
+      <span class="meter-data__text-prepended">Amount:</span>
+      <input type="number"
+             ng-model="$ctrl.meter.amount" 
+             ng-disabled=" !$ctrl.editable "
+             class="meter-data__input"/>
+    </label>
+  </p>
+  
+  <div ng-class="$ctrl.meter.csstype"
+       class="meter-data__image">
+  </div>
+  
+  <div class="meter-data__aside-left meter-data__control-buttons">
+    
+    <a ng-show=" $ctrl.viewType === 'short' "
+       href="#!meters/{{$ctrl.meter.index}}"
+       class="meter-data__showbtn button button__blue"
+       >Info </a>
+            
+    <a ng-show=" $ctrl.viewType === 'extended' && $ctrl.editable === false "
+       ng-click=" $ctrl.edit() "
+       class="button button__red"
+       >Edit </a>
+    
+    <a ng-show=" $ctrl.viewType === 'extended' && $ctrl.editable === true "
+       ng-click=" $ctrl.save() "
+       class="button button__yellow"
+       >Save </a>
+    
+  </div>
+  
+</div>
