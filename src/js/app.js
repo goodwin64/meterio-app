@@ -18,9 +18,9 @@ angular
             .when('/stats', {
                 template: `stats`
             })
-            // .otherwise({
-            //     redirectTo: '/main'
-            // });
+            .otherwise({
+                redirectTo: '/main'
+            });
     }])
 ;
 

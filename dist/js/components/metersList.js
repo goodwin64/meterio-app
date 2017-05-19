@@ -9,7 +9,7 @@ angular.module('MeterioApp').config(['$routeProvider', function ($routeProvider)
     controller: metersListController
 });
 
-function metersListController($scope, metersService) {
+function metersListController(metersService) {
     var _this = this;
 
     var metersList = void 0;

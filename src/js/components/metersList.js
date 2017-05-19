@@ -14,7 +14,7 @@ angular
     });
 
 
-function metersListController($scope, metersService) {
+function metersListController(metersService) {
     let metersList;
     this.metersList = [];
     metersService.getMetersList().then((data) => {

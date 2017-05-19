@@ -1,0 +1,28 @@
+@import "variables";
+
+.options__section {
+	background-color: $color-silver;
+	padding: 10px;
+	text-align: right;
+
+	button {
+		border: 0;
+		padding: 10px;
+		background-color: $color-light-red;
+		opacity: .5;
+
+		&.type__active {
+			background-color: $color-light-blue;
+			opacity: 1;
+		}
+	}
+}
+
+.meters-list {
+	&__filter {
+		label {
+			margin: 5px;
+			border-right: 1px solid;
+		}
+	}
+}

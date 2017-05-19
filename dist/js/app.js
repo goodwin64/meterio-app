@@ -10,8 +10,7 @@ angular.module('MeterioApp', ['ngRoute']).controller('mainCtrl', function ($scop
         template: '<h1>main<h1>'
     }).when('/stats', {
         template: 'stats'
+    }).otherwise({
+        redirectTo: '/main'
     });
-    // .otherwise({
-    //     redirectTo: '/main'
-    // });
 }]);

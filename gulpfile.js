@@ -19,11 +19,15 @@ gulp.task('build:css', function () {
 });
 
 gulp.task('build:js', function() {
-    return gulp.src('src/js/**/*.js')
+    return gulp.src(['src/js/**/*.js', '!src/js/'])
         .pipe(babel({
             presets: ['es2015']
         }))
         .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('watch:js', function() {
+    return gulp.watch('js/**/*.js', ['build:js'])
 });
 
 gulp.task('copy-libs', function() {
@@ -43,9 +47,31 @@ gulp.task('copy-server-data', function() {
         .pipe(gulp.dest('dist/server'));
 });
 gulp.task('copy-assets', function() {
-    return gulp.src('src/assets')
-        .pipe(gulp.dest('dist/assets'));
+    return gulp.src('src/assets/images/*')
+        .pipe(gulp.dest('dist/assets/images'));
 });
-gulp.task('copy', ['copy-libs', 'copy-index', 'copy-views', 'copy-server-data', 'copy-assets']);
+// gulp.task('copy-path', function () {
+//     return gulp.src('src/**/*.{jpg|png|html|json}')
+//         .pipe(
+//             gulp.dest(function(file) {
+//                 console.log(file);
+//                 return path.join('dist', path.dirname(file.path));
+//             })
+//         );
+// });
+gulp.task('copy', [
+    'copy-libs',
+    'copy-index',
+    'copy-views',
+    'copy-server-data',
+    'copy-assets'
+]);
 
-gulp.task('default', ['clean', 'copy', 'build:css', 'build:js']);
+
+
+gulp.task('default', [
+    'clean',
+    'copy',
+    'build:css',
+    'build:js'
+]);

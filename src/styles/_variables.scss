@@ -1,0 +1,25 @@
+// variables
+
+// colors
+$light-color: #fefefe;
+$light-color-darkened: darken($light-color, 10%);
+$dark-color: #444;
+$dark-color-lightened: lighten($dark-color, 10%);
+
+$color-red: #e74c3c;
+$color-light-red: #e47f74;
+
+$color-blue: #3498db;
+$color-light-blue: #72b0d9;
+
+$color-yellow: #f1c40f;
+$color-green: #27ae60;
+$color-silver: #bdc3c7;
+
+// other
+$standard-border: 1px solid #888;
+$standard-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+$size-input-in-meter-data: 150px;
+
+// links
+$logo: url("../assets/images/meterio-logo.png");

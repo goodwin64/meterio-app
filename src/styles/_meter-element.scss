@@ -1,0 +1,98 @@
+@import "variables";
+
+meter-element {
+	display: block;
+}
+
+// by layout
+.meter-data {
+	border: 2px solid rgba(0,0,0,0.25);
+	padding: 10px;
+	margin: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row wrap;
+	position: relative;
+
+	&:hover {
+		border: 2px solid rgba(0,0,0,0.35);
+	}
+
+	& > * {
+		flex: 1 100%;
+	}
+
+	&__aside-left {
+		flex: 1 auto;
+	}
+
+	&__aside-right {
+		flex: 1 auto;
+	}
+}
+
+// by content
+.meter-data {
+
+	&__image {
+		width: 72px;
+		height: 72px;
+		margin: 5px;
+		position: absolute;
+		right: 5px;
+		top: 5px;
+		-webkit-background-size: cover;
+		background-size: cover;
+
+		&.hot-water {
+			background-image: url("../assets/images/meter-type-hot-water.jpg");
+		}
+		&.cold-water {
+			background-image: url("../assets/images/meter-type-cold-water.jpg");
+		}
+		&.electricity {
+			background-image: url("../assets/images/meter-type-electricity.jpg");
+		}
+	}
+
+	&__text-prepended {
+		width: 75px;
+		display: inline-block;
+	}
+
+	&__any-input {
+		width: $size-input-in-meter-data;
+	}
+
+	&__date {}
+
+	&__control-buttons {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		margin: 25px 10px;
+
+		& > a {
+			text-decoration: none;
+			text-align: center;
+			cursor: pointer;
+		}
+	}
+
+	&__showbtn {
+		//padding: 10px;
+	}
+}
+
+// by details
+.meter-data {
+	// distinct view
+	&.extended-info {
+
+	}
+
+	// in list
+	&.short-info {
+
+	}
+}

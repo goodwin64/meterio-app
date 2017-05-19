@@ -9,6 +9,7 @@ angular.module('MeterioApp').service('metersService', function ($http) {
             method: "GET",
             url: 'server/meters.json'
         }).then(function success(response) {
+            metersList = response.data;
             return response.data;
         }, function error(response) {
             return response.statusText;
@@ -26,14 +27,16 @@ angular.module('MeterioApp').service('metersService', function ($http) {
     };
 
     this.getMeter = function (id) {
-        return $http({
-            method: "GET",
-            url: serverPath + '/item/' + id
-        }).then(function success(response) {
-            return response.data;
-        }, function error(response) {
-            return response.statusText;
-        });
+        return metersList[id];
+
+        // $http({
+        //    method: "GET",
+        //    url: `${serverPath}/item/${id}`
+        // }).then(function success(response) {
+        //    return response.data;
+        // }, function error(response) {
+        //    return response.statusText;
+        // })
     };
 
     this.setMeter = function (id, data) {

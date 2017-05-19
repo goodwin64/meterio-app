@@ -15,12 +15,12 @@ angular.module('MeterioApp').config(['$routeProvider', function ($routeProvider)
 function meterController($routeParams, metersService) {
     var _this = this;
 
-    // this.meter.csstype = this.meter.type.replace(/ /g, '-');
     this.$onInit = function () {
-        var meter = this.meter;
+        var meter = _this.meter;
         meter.date = new Date(meter.date);
         meter.csstype = meter.type.name.replace(/ /g, '-');
     };
+
     this.editable = false;
 
     this.edit = function () {
@@ -31,8 +31,10 @@ function meterController($routeParams, metersService) {
         _this.editable = false;
     };
 
-    // if a separate view
     if ($routeParams.meterId) {
         this.meter = metersService.getMeter($routeParams.meterId);
+        this.viewType = 'extended';
+    } else {
+        this.viewType = 'short';
     }
 }
